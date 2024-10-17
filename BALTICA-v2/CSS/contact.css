@@ -1,0 +1,10 @@
+main {
+    left: 15.5%;
+}
+
+main div {
+    width: 83%;
+    background: rgba(0, 0, 0, 0.7);
+    margin-bottom: 10%;
+    font-size: 20px;
+}

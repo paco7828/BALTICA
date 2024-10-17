@@ -1,0 +1,53 @@
+#italian {
+    padding-top: 0;
+}
+
+main {
+    display: grid;
+    place-items: center;
+    width: 83%;
+    left: 8.5%;
+    background: transparent;
+    row-gap: 30px;
+    overflow-y: scroll;
+    max-height: calc(100vh - 38%);
+}
+
+main::-webkit-scrollbar {
+    width: 10px;
+}
+
+main::-webkit-scrollbar-thumb {
+    background-color: #ffffff;
+}
+
+main h1 {
+    position: fixed;
+    top: 20%;
+    text-decoration: overline;
+    z-index: 1;
+    background: none;
+    text-align: center;
+}
+
+main img {
+    width: 250px;
+    height: 150px;
+}
+
+main div {
+    display: grid;
+    place-items: center;
+    text-align: center;
+    gap: 20px;
+    background-color: #d8cccc;
+    padding: 5px;
+    width: 300px;
+    height: fit-content;
+    color: #0c0c0c;
+    transition: all 1s;
+}
+
+main h2 {
+    text-decoration: underline;
+}
