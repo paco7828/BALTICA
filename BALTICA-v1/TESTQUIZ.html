@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: #0c0c0c;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        #answerBox {
+            position: absolute;
+            top: 10%;
+            left: 40%;
+        }
+
+        #nextBtn {
+            margin-top: 10px;
+        }
+
+        #points {
+            position: absolute;
+            top: 30%;
+            left: 35%;
+        }
+    </style>
+</head>
+
+<body>
+    <h2 id="question"></h2>
+    <div id="answerBox">
+        <label id="lab1">Answer A</label>
+        <input id="ans1" type="checkbox">
+        <br>
+        <label id="lab2">Answer B</label>
+        <input id="ans2" type="checkbox">
+        <br>
+        <label id="lab3">Answer C</label>
+        <input id="ans3" type="checkbox">
+        <br>
+        <label id="lab4">Answer D</label>
+        <input id="ans4" type="checkbox">
+        <br>
+        <button id="nextBtn">Next</button>
+    </div>
+    <h3 id="points"></h3>
+</body>
+<script>
+
+    let clickCount = 0
+    let question = document.getElementById("question")
+    let ansA = document.getElementById("ans1")
+    let ansB = document.getElementById("ans2")
+    let ansC = document.getElementById("ans3")
+    let ansD = document.getElementById("ans4")
+    let nextBtn = document.getElementById("nextBtn")
+    let summary = document.getElementById("points")
+    let points = 0
+    let maxPoints = 3
+    let questSents = ["First question: 1st question", "Second question: 2nd question", "Third question: 3rd question"]
+    let correctAnswers = []
+
+    function unCheckAns() {
+        let answers = [ansA, ansB, ansC, ansD]
+        for (let i = 0; i < answers.length; i++) {
+            answers[i].checked = false
+        }
+    }
+
+    question.textContent = questSents[0]
+
+    //adding points for correct answers
+
+
+    nextBtn.addEventListener("click", () => {
+        clickCount += 1
+        unCheckAns()
+
+        if (clickCount === 1) {
+            correctAnswers.push(ansA.checked)
+            if (ansA.checked) {
+                points += 1
+            }
+            question.textContent = questSents[clickCount]
+        }
+
+        else if (clickCount === 2) {
+            correctAnswers.push(ansB.checked)
+            if (ansB.checked) {
+                points += 1
+            }
+            question.textContent = questSents[clickCount]
+        }
+
+        else if (clickCount === 3) {
+            correctAnswers.push(ansC.checked)
+            if (ansC.checked) {
+                points += 1
+            }
+            nextBtn.textContent = "Finish"
+        }
+
+        else {
+            for (let i = 0; i < correctAnswers.length; i++) {
+                if (correctAnswers[i]) {
+                    points += 1
+                }
+            }
+        }
+
+        summary.textContent = `You have earned ${points} / ${maxPoints}`
+
+    })
+
+</script>
+
+</html>

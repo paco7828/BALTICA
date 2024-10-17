@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+    <title>Baltica</title>
+    <style>
+        /* redesign too goofy page */
+        /* header redesign + footer redesign + no aniamtion tot he menu similarities to the vr webpage */
+
+        html {
+            overflow-y: hidden;
+        }
+
+        body {
+            background: rgba(255, 255, 255, 0) url("bg.jpg") no-repeat center center fixed;
+            display: grid;
+            grid-template-rows: 1fr 5fr 1fr;
+        }
+
+        .material-symbols-outlined {
+            color: #fff;
+        }
+
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        header {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            background-color: #617099;
+            width: 100%;
+            place-items: center;
+            border-bottom: 2px solid #fff;
+        }
+
+        a {
+            text-decoration: none;
+            color: #fff;
+        }
+
+        h1 {
+            font-weight: 100;
+        }
+
+
+        #travelling,
+        #relaxing {
+            position: absolute;
+            top: 20%;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            background-color: #2e3544;
+            width: 20%;
+            height: 7%;
+            right: 3%;
+            padding-top: 5px;
+            border-radius: 10px;
+            color: #fff;
+        }
+
+        #travelling:active,
+        #relaxing:active {
+            background-color: #444f69;
+        }
+
+        #travelling,
+        #relaxing {
+            animation: swing 3.5s ease-in-out forwards infinite;
+            overflow: visible;
+        }
+
+        @keyframes swing {
+            0% {
+                transform: rotate(10deg);
+            }
+
+            50% {
+                transform: rotate(-5deg);
+            }
+
+            100% {
+                transform: rotate(10deg);
+            }
+        }
+
+        #relaxing {
+            left: 3%
+        }
+
+        #travelling span,
+        #relaxing span {
+            overflow: hidden;
+            color: #fff;
+            width: 45px;
+            height: 45px;
+            display: grid;
+            place-items: center;
+        }
+
+        #travelling span {
+            transform: rotate(45deg);
+        }
+
+        #greeting {
+            position: absolute;
+            top: 14.8%;
+            left: 25%;
+            text-align: center;
+            color: black;
+            font-size: 27px;
+            background-color: #617099;
+            width: 50%;
+            height: 0%;
+            color: #fff;
+            overflow: hidden;
+            opacity: 0;
+            transition: all 3s;
+            border-bottom-right-radius: 20px;
+            border-bottom-left-radius: 20px;
+        }
+
+        #relaxBall,
+        #travelBall {
+            width: 20px;
+            height: 20px;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: ballSwing 3.5s ease-in-out forwards infinite;
+            position: absolute;
+            top: -22px;
+            left: 50%;
+            color: black;
+            font-size: 12px;
+        }
+
+        @keyframes ballSwing {
+            0% {
+                transform: translateX(100%);
+            }
+
+            50% {
+                transform: translateX(-200%) rotate(-180deg);
+            }
+
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        #menuBtn {
+            background-color: #2e3544;
+            border: solid transparent;
+            border-radius: 16px;
+            border-width: 0 0 4px;
+            box-sizing: border-box;
+            color: #FFFFFF;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 20px;
+            padding: 8px 20px;
+            touch-action: manipulation;
+            transform: translateZ(0);
+            transition: filter .2s;
+            overflow: hidden;
+        }
+
+        #menuBtn::after {
+            background-clip: padding-box;
+            background-color: #444f69;
+            border: solid transparent;
+            border-radius: 16px;
+            border-width: 0 0 4px;
+            bottom: -4px;
+            content: "";
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: -1;
+        }
+
+        #menuBtn:active {
+            padding-bottom: 10px;
+            background-color: transparent;
+        }
+
+        #newBall {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: #444f69;
+            position: absolute;
+            right: 13%;
+            top: 6%;
+            opacity: 0;
+            transition: all 1s;
+            overflow: hidden;
+            display: grid;
+            place-items: center;
+        }
+
+        footer {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            background-color: #2e3544;
+            border-top-right-radius: 10px;
+            border-top-left-radius: 10px;
+            place-items: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer span {
+            overflow: hidden;
+        }
+
+        #phone,
+        #email,
+        #website {
+            height: 70px;
+            width: fit-content;
+            display: grid;
+            place-items: center;
+        }
+
+        #quizBtn {
+            width: 25%;
+            height: 7%;
+            font-weight: 300;
+            transition: all .1s;
+            padding: 10px 20px;
+            border-radius: 100px;
+            background: #2e3544;
+            font-size: 15px;
+            color: #FFFFFF;
+            position: fixed;
+            top: 50%;
+            left: 40%;
+            animation: clicking 0.5s infinite;
+        }
+
+        @keyframes clicking {
+            0% {
+                background: #2e3544;
+            }
+
+            50% {
+                background: #444f66;
+                transform: scale(0.95);
+            }
+
+            100% {
+                background: #2e3544;
+            }
+        }
+
+        #quizBtn:active {
+            background: #444f66;
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <img src="logo.png">
+        <h1>BALTICA</h1>
+        <button id="menuBtn">MENU</button>
+    </header>
+    <main>
+        <button id="relaxing">
+            <div id="relaxBall"></div>
+            <h3>Relaxing</h3>
+            <span class="material-symbols-outlined">
+                self_improvement-
+            </span>
+        </button>
+        <h1 id="greeting">"Let's explore the <br> Baltics together!"</h1>
+        <button id="travelling">
+            <div id="travelBall"></div>
+            <h3>Travelling</h3>
+            <span class="material-symbols-outlined">
+                flight
+            </span>
+        </button>
+
+
+        <button id="quizBtn">
+            <span>CLICK ME</span>
+            <div></div>
+        </button>
+
+
+    </main>
+    <footer>
+        <div id="phone">
+            <span class="material-symbols-outlined">
+                phone_forwarded
+            </span>
+            <h4>+36301234567</h4>
+        </div>
+        <div id="email">
+            <span class="material-symbols-outlined">
+                mail
+            </span>
+            <h4>support@baltica.hu</h4>
+        </div>
+        <div id="website">
+            <span class="material-symbols-outlined">
+                captive_portal
+            </span>
+            <h4>www.baltica.hu</h4>
+        </div>
+    </footer>
+</body>
+<script>
+    window.addEventListener("resize", () => {
+        if (window.innerWidth === 600) {
+            alert("phone res")
+        }
+    })
+
+    //REDIRECTION TO THE RELAXING + TRAVELLING PAGE
+
+    let relaxBall = document.getElementById("relaxBall")
+    let relaxBtn = document.getElementById("relaxing")
+
+    let travelBall = document.getElementById("travelBall")
+    let travelBtn = document.getElementById("travelling")
+
+    let rtBtns = [relaxBtn, travelBtn]
+    let rtBalls = [relaxBall, travelBall]
+
+    for (let i = 0; i < rtBtns.length; i++) {
+        rtBtns[i].addEventListener("click", () => {
+            rtBalls[i].style.cssText = `
+            transition: all 0.5s;
+            animation: none;
+            left: 0;
+            width: 100%;
+            border-radius: 5px;
+            position: absolute;
+            `
+            setTimeout(() => {
+                rtBalls[i].textContent = "Redirecting"
+            }, 450);
+
+            setTimeout(() => {
+                //open the new pages
+            }, 1000);
+        })
+    }
+
+    let greeting = document.getElementById("greeting")
+
+    setTimeout(() => {
+        greeting.style.opacity = "1"
+        greeting.style.width = "50%"
+        greeting.style.height = "9%"
+    }, 500);
+
+
+    //Menu btn function
+
+    let menuBtn = document.getElementById("menuBtn");
+    let header = document.querySelector("header");
+
+    menuBtn.addEventListener("click", () => {
+        menuBtn.style.transition = "opacity 0.4s";
+        setTimeout(() => {
+            menuBtn.style.opacity = "0";
+        }, 400);
+        setTimeout(() => {
+            menuBtn.style.display = "none";
+            let newBall = document.createElement("div");
+            newBall.setAttribute("id", "newBall");
+            header.appendChild(newBall);
+            setTimeout(() => {
+                newBall.style.opacity = "1";
+                newBall.style.borderRadius = "10px";
+                setTimeout(() => {
+                    newBall.style.width = "120px";
+                }, 300);
+                setTimeout(() => {
+                    newBall.style.height = "100px";
+                }, 300);
+                newBall.style.right = "3%";
+                newBall.style.top = "3px";
+
+                let textContents = ["Balti körút", "Rólunk", "Elérhetőségeink"];
+                let hrefs = ["#", "#", "#"];
+                for (let i = 0; i < 3; i++) {
+                    let newA = document.createElement("a");
+                    newA.textContent = textContents[i];
+                    newA.setAttribute("href", hrefs[i]);
+                    newBall.appendChild(newA);
+                }
+
+                document.addEventListener("click", (event) => {
+                    if (!menuBtn.contains(event.target) && event.target !== newBall) {
+                        newBall.style.opacity = "0"
+                        setTimeout(() => {
+                            header.removeChild(newBall)
+                        }, 450);
+                        newBall.style.opacity = "0";
+                        setTimeout(() => {
+                            header.removeChild(newBall);
+                            menuBtn.style.display = "block";
+                            setTimeout(() => {
+                                menuBtn.style.opacity = "1";
+                            }, 200);
+                        }, 400);
+                    }
+                });
+            }, 300);
+        }, 800);
+    });
+
+    //REDIRECTION TO THE QUIZ PAGE (GOOGLE FORMS OR ON THE WEBPAGE)
+
+    let quizBtn = document.getElementById("quizBtn")
+
+    quizBtn.addEventListener("click", () => {
+        //redirect to the quiz
+    })
+
+</script>
+
+</html>

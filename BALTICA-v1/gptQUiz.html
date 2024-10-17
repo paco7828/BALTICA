@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+        }
+
+        .quiz-container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+
+        h1,
+        h2 {
+            text-align: center;
+        }
+
+        .start-btn,
+        .next-btn,
+        .restart-btn {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px;
+        }
+
+        .answer-btn {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .answer-btn:hover {
+            background-color: #e2e2e2;
+        }
+
+        .hide {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="quiz-container">
+        <h1>Quiz</h1>
+        <button id="start-btn" class="start-btn">Start</button>
+        <div id="question-container" class="hide">
+            <div id="question"></div>
+            <div id="answer-buttons" class="answer-buttons"></div>
+            <button id="next-btn" class="next-btn hide">Next</button>
+        </div>
+        <div id="result-container" class="hide">
+            <h2>Your Score:</h2>
+            <p id="score"></p>
+            <button id="restart-btn" class="restart-btn">Restart</button>
+        </div>
+    </div>
+</body>
+<script>
+    // Define variables for the quiz
+    let currentQuestion = 0;
+    let score = 0;
+
+    // Define the quiz questions and their answers
+    const quizQuestions = [
+        {
+            question: "Select the Baltic States",
+            answers: [
+                { answer: "Denmark", correct: false },
+                { answer: "Estonia", correct: true },
+                { answer: "Finland", correct: false },
+                { answer: "Poland", correct: false },
+                { answer: "Latvia", correct: true },
+                { answer: "Lithuania", correct: true },
+                { answer: "Norway", correct: false },
+                { answer: "Russia", correct: false },
+                { answer: "Sweden", correct: false }
+            ]
+        },
+        {
+            question: "Select the Scandinavian countries",
+            answers: [
+                { answer: "Denmark", correct: true },
+                { answer: "Estonia", correct: false },
+                { answer: "Finland", correct: true },
+                { answer: "Poland", correct: false },
+                { answer: "Latvia", correct: false },
+                { answer: "Lithuania", correct: false },
+                { answer: "Norway", correct: true },
+                { answer: "Russia", correct: false },
+                { answer: "Sweden", correct: true }
+            ]
+        },
+        {
+            question: "Which city is on this picture?",
+            image: "riga.jpg",
+            answers: [
+                { answer: "Riga", correct: true },
+                { answer: "Stockholm", correct: false },
+                { answer: "Copenhagen", correct: false }
+            ]
+        },
+        {
+            question: "Which city is on this picture?",
+            image: "vilnius.jpg",
+            answers: [
+                { answer: "Oslo", correct: false },
+                { answer: "Vilnius", correct: true },
+                { answer: "Tartu", correct: false }
+            ]
+        },
+        {
+            question: "Which city is on this picture?",
+            image: "tallin.jpg",
+            answers: [
+                { answer: "St Petersburg", correct: false },
+                { answer: "Helsinki", correct: false },
+                { answer: "Tallin", correct: true }
+            ]
+        }
+    ];
+
+    // Define a function to handle the start button click event
+    function startQuiz() {
+        document.getElementById("start-btn").style.display = "none";
+        displayQuestion();
+    }
+
+    // Define a function to display the current question
+    function displayQuestion() {
+        const question = quizQuestions[currentQuestion];
+        const questionElement = document.getElementById("question");
+        questionElement.innerText = question.question;
+        if (question.hasOwnProperty("image")) {
+            const imageElement = document.createElement("img");
+            imageElement.src = question.image;
+            imageElement.alt = question.question;
+            questionElement.appendChild(imageElement);
+        }
+        const answerList = document.getElementById("answer-buttons");
+        answerList.innerHTML = "";
+        for (let i = 0; i < question.answers.length; i++) {
+            const answer = question.answers[i];
+            const answerElement = document.createElement("li");
+            answerElement.innerHTML = `
+      <label>
+        <input type="${question.answers.length > 1 ? "checkbox" : "radio"}" name="answer" value="${answer.answer}" ${i === 0 && !question.hasOwnProperty("image") ? "checked" : ""}>
+        ${answer.answer}
+      </label>
+    `;
+            answerList.appendChild(answerElement);
+        }
+    }
+
+    // Define a function to handle the next button click event
+    function nextQuestion() {
+        const selectedAnswer = document.querySelector('input[name="answer"]:checked').value;
+        const currentAnswers = quizQuestions[currentQuestion].answers;
+
+        let isCorrect = false;
+        currentAnswers.forEach(answer => {
+            if (answer.answer === selectedAnswer && answer.correct) {
+                isCorrect = true;
+                score++;
+            }
+        });
+
+        currentQuestion++;
+
+        if (currentQuestion < quizQuestions.length) {
+            displayQuestion();
+        } else {
+            displayScore();
+        }
+    }
+
+    // Define a function to display the final score
+    function displayScore() {
+        document.getElementById("quiz-container").style.display = "none";
+        document.getElementById("result-container").style.display = "block";
+        document.getElementById("score").innerText = `Your score: ${score}/${quizQuestions.length}`;
+    }
+
+    // Add event listeners to the buttons
+    document.getElementById("start-btn").addEventListener("click", startQuiz);
+    document.getElementById("next-btn").addEventListener("click", nextQuestion);
+
+
+</script>
+
+</html>

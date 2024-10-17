@@ -1,0 +1,21 @@
+main {
+    left: 8.1%;
+}
+
+button {
+    outline: 0;
+    border: 0;
+    padding: 14px 24px 16px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1;
+    background: #1a1919;
+    color: #ffffff;
+    box-shadow: 0 0 0 3px #000000 inset;
+    margin-top: 15%;
+    transition: all 0.2s ease-in-out;
+}
+
+button:active {
+    transform: scale(1.4);
+}
